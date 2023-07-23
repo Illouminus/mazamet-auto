@@ -1,7 +1,6 @@
 "use client"
 import React, {useState, createContext, Dispatch, SetStateAction, ReactNode, useEffect} from "react";
 
-import { useCookies } from 'react-cookie';
 import axios from "axios";
 interface AuthContextType {
     isAuthenticated: boolean;
