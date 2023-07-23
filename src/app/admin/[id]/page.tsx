@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 
-export default async function UserProfile({params}: any) {
+export default  function UserProfile({params}: any) {
     const router = useRouter()
 
     return (

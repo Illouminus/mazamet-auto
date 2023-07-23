@@ -1,6 +1,6 @@
 import {ResetForm} from "@/components/ResetForm/ResetForm";
 
-export default async function ResetPasswordPage() {
+export default function ResetPasswordPage() {
     return (
         <ResetForm />
     )

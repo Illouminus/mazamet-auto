@@ -1,4 +1,4 @@
-export default async function CatalogPage () {
+export default function CatalogPage () {
     return (
         <div>
             Catalog
