@@ -3,7 +3,7 @@ import {connect} from "@/dbConfig/dbConfig";
 import {getDataFromToken} from "@/lib/dataToken/DataToken";
 import Order from "@/models/Order";
 
-export async function updateOrderStatus(request: NextRequest) {
+export async function GET(request: NextRequest) {
     try {
         await connect();
         // Проверка доступа администратора.
