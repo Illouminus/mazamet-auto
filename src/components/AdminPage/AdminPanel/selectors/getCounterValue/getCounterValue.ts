@@ -1,3 +1,0 @@
-import {StateSchema} from "@/providers/StoreProvider/StateSchema";
-
-export const getCounterValue = (state: StateSchema) => state.counter.value
