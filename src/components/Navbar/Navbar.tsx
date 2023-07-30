@@ -71,3 +71,4 @@ export const Navbar = () => {
 };
 
 
+export const fetchCache = 'force-no-store';
