@@ -126,5 +126,7 @@
 
     .menuClose {
         width: 30px;
+        display: none;
+
     }
 }

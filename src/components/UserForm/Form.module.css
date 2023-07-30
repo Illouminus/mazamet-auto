@@ -1,5 +1,3 @@
-
-
 .container {
     background: linear-gradient(90deg, #e4e3ee, #2C3033);
     display: flex;
@@ -20,6 +18,7 @@
     box-shadow: 0 0 24px #c1c0c7;
     margin-top: 150px;
     border-radius: 20px;
+    overflow: hidden;
 }
 
 .screen__content {

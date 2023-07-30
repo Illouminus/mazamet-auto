@@ -1,5 +1,5 @@
 "use client"
-import React, {useContext, useState} from 'react';
+import React, {memo, useContext, useState} from 'react';
 import Image from "next/image";
 import {useForm} from 'react-hook-form';
 import classNames from "classnames";
@@ -9,9 +9,12 @@ import passwordIcon from '../../../public/images/icons/password_icon.svg'
 import emailIcon from '../../../public/images/icons/email_icon.svg'
 import nextIcon from '../../../public/images/icons/next_icon.svg'
 import toast, {Toaster} from 'react-hot-toast';
-import axios from "axios";
 import {useRouter} from "next/navigation";
-import {AuthContext} from "@/components/AuthProvider/AuthProvider";
+import {AuthContext} from "@/providers/AuthProvider/AuthProvider";
+import {useAppDispatch} from "@/lib/useAppDispatch/useAppDispatch";
+import {loginByUsername} from "@/components/UserForm/asyncThunkLogin/asyncThunkLogin";
+import {useSelector} from "react-redux";
+import {getUserForm} from "@/components/UserForm/selectors/userFormSelectors";
 
 export type FormData = {
     username: string;
@@ -23,32 +26,33 @@ type FormProps = {
     isRegistration: boolean;
 };
 
-export const Form: React.FC<FormProps> = ({isRegistration}) => {
+export const Form: React.FC<FormProps> = memo(({isRegistration}) => {
     const {register, handleSubmit, formState: {errors}} = useForm<FormData>();
-    const {setIsAuthenticated} = useContext(AuthContext)
-    const [loading, setLoading] = useState(false)
+    const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext)
     const router = useRouter()
+    const dispatch = useAppDispatch()
+    const {isLoading, error} = useSelector(getUserForm)
     const onSubmit = async (data: FormData) => {
-        // Handle login/register logic
         try {
-            setLoading(true)
-            const url = isRegistration ? '/api/users/signup' : '/api/users/login';
-            await axios.post(url, data)
-            setIsAuthenticated(true)
-            toast.success('SUCCESS', {position: "top-right"})
-            router.push('/')
+            const path = isRegistration ? '/api/users/signup' : '/api/users/login';
+            const result  = await dispatch(loginByUsername({path, username: data.username, email: data.email, password: data.password}))
+            if (result.type === "login/loginByUsername/rejected") {
+                toast.error('Mot de passe incorrect',  {position: "top-right"})
+            } else {
+                setIsAuthenticated(true)
+                toast.success('Connecté', {position: "top-right"})
+                setTimeout(() => {
+                    router.push('/admin')
+                }, 2000)
+            }
+
+            // router.push('/')
         } catch (error) {
             const action = isRegistration ? "Signup" : "Login";
-            toast.error(`${action} failed`, {position: "bottom-left"})
-        } finally {
-            setLoading(false)
+            toast.error(`${error} failed`, {position: "bottom-left"})
         }
     };
 
-    // if (loading)
-    //     return (
-    //         <Loader />
-    //     )
 
 
     return (
@@ -57,7 +61,6 @@ export const Form: React.FC<FormProps> = ({isRegistration}) => {
             <div className={cls.screen}>
                 <div className={cls.screen__content}>
                     <form className={cls.login} onSubmit={handleSubmit(onSubmit)}>
-
                         <div className={cls.login__field}>
                             <Image
                                 src={userIcon}
@@ -132,4 +135,4 @@ export const Form: React.FC<FormProps> = ({isRegistration}) => {
             </div>
         </div>
     );
-};
+});

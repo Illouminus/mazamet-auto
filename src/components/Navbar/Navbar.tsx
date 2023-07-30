@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from './Navbar.module.css';
 import axios from "axios";
 import {useRouter} from "next/navigation";
-import {AuthContext} from "@/components/AuthProvider/AuthProvider";
+import {AuthContext} from "@/providers/AuthProvider/AuthProvider";
 
 
 export const Navbar = () => {
@@ -26,6 +26,9 @@ export const Navbar = () => {
             }
 
     }
+
+
+
     return (
         <nav className={styles.navbar}>
             <div className={styles.container_logo}>
@@ -48,11 +51,11 @@ export const Navbar = () => {
             <div className={isOpen ? styles.menuOpen : styles.menuClose}>
                 {isAuthenticated ? (
                     <>
-                        <Link href={"/catalog"} className={styles.link}>Catalog</Link>
-                        <Link href={"/about"} className={styles.link}>A propos</Link>
-                        <Link href={"/services"} className={styles.link}>Services</Link>
-                        <Link href={"/admin"} className={styles.link}>Admin</Link>
-                        <button className={styles.link} onClick={signOut}>Logout</button>
+                        <Link href={"/catalog"} className={styles.link} onClick={() => setIsOpen(false)}>Catalog</Link>
+                        <Link href={"/about"} className={styles.link} onClick={() => setIsOpen(false)}>A propos</Link>
+                        <Link href={"/services"} className={styles.link} onClick={() => setIsOpen(false)}>Services</Link>
+                        <Link href={"/admin"} className={styles.link} onClick={() => setIsOpen(false)}>Admin</Link>
+                        <button className={styles.link} onClick={signOut} >Logout</button>
                     </>
                 ) : (
                     <>

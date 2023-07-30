@@ -4,7 +4,10 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import {Navbar} from "@/components/Navbar/Navbar";
 import {Footer} from "@/components/Footer/Footer";
-import {AuthProvider} from "@/components/AuthProvider/AuthProvider";
+import {AuthProvider} from "@/providers/AuthProvider/AuthProvider";
+import {StoreProvider} from "@/providers/StoreProvider/StoreProvider";
+import {NavProvider} from "@/providers/NavProvider/NavProvider";
+
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -19,14 +22,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
   return (
+
     <html lang="fr">
       <body className={inter.className}>
+      <StoreProvider>
       <AuthProvider>
-      <Navbar />
-          {children}
-      <Footer />
+         <NavProvider>
+              {children}
+         </NavProvider>
       </AuthProvider>
+      </StoreProvider>
       </body>
     </html>
   )

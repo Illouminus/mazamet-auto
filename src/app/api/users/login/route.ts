@@ -23,9 +23,13 @@ export async function GET (request: NextRequest) {
                 {status: 500})
         }
 
-        const tokenData = jwt.verify(token, process.env.SECRET)
+        const tokenData: any = jwt.verify(token, process.env.SECRET)
         if (tokenData) {
-            return NextResponse.json({isAuthenticated: true})
+            return NextResponse.json({
+                isAuthenticated: true,
+                username: tokenData.username,
+                admin: tokenData.admin
+            })
         } else {
             return NextResponse.json({isAuthenticated: false})
         }
@@ -73,8 +77,9 @@ export async function POST (request: NextRequest) {
             )
 
             const response = NextResponse.json({
-                message: 'Login successful',
-                success: true
+                admin: user.isAdmin,
+                username: user.username,
+                isAuthenticated: true
             })
 
             response.cookies.set('token', token, {

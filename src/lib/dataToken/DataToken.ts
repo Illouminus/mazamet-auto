@@ -1,5 +1,6 @@
 import {NextRequest} from "next/server";
 import jwt from 'jsonwebtoken'
+import {NextApiRequest} from "next";
 
 interface decodedTokenType {
     id?: string,
@@ -8,7 +9,7 @@ interface decodedTokenType {
     admin?: boolean
 }
 
-export const getDataFromToken = (request: NextRequest) => {
+export const getDataFromToken = (request: NextRequest ) => {
     try {
         const token = request.cookies.get('token')?.value || ''
         return jwt.verify(token, process.env.SECRET!) as decodedTokenType

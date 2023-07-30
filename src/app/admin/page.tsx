@@ -1,17 +1,11 @@
 "use client"
 
-import toast, { Toaster } from 'react-hot-toast';
+import {AdminPanel} from "@/components/AdminPage/AdminPanel/AdminPanel";
+
 export default  function ProfilePage() {
 
-    const handler = () => {
-        toast.success('HIII')
-    }
 
     return (
-        <div className="flex justify-center items-center h-full">
-            <Toaster />
-            Admin Page
-            <button onClick={handler}>CLICK</button>
-        </div>
+            <AdminPanel />
     )
 }
