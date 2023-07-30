@@ -89,3 +89,5 @@ export const Products = () => {
         </div>
     );
 };
+
+export const fetchCache = 'force-no-store';

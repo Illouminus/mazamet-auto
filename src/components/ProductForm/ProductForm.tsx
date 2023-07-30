@@ -3,8 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import axios from "axios";
 import {Sidebar} from "@/components/AdminPage/Sidebar/Sidebar";
 import {Toaster, toast} from "react-hot-toast";
-import {Simulate} from "react-dom/test-utils";
-import reset = Simulate.reset;
+
 
 type FormValues = {
     brand: string,
