@@ -9,3 +9,4 @@ export default  function ProfilePage() {
             <AdminPanel />
     )
 }
+export const fetchCache = 'force-no-store';

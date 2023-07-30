@@ -14,3 +14,4 @@ export default function productList () {
        </div>
     )
 }
+export const fetchCache = 'force-no-store';
