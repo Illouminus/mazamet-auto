@@ -236,3 +236,5 @@ export const AddProductForm = memo(() => {
         </div>
     );
 });
+
+export const fetchCache = 'force-no-store';
