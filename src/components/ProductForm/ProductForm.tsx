@@ -140,7 +140,7 @@ export const AddProductForm = memo(() => {
                     {step === 1 && (
                         <div>
                             <label className="block text-gray-700 text-sm sm:text-base font-bold mb-2" htmlFor="brand">
-                                Brand:
+                                Marque:
                             </label>
                             <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" {...register('brand')}>
                                 {brands.length > 0 ?  brands.map((brand, index) => <option
@@ -149,50 +149,50 @@ export const AddProductForm = memo(() => {
                                 >{brand.name}</option>)
                                     : null
                                 }
-                                <option value="other">Other</option>
+                                <option value="other">Autre</option>
                             </select>
                             {watch('brand') === 'other' || brands.length === 0 ? (
-                                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" id="otherBrand" type="text" {...register('newBrand')} placeholder="Enter new brand" />
+                                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" id="otherBrand" type="text" {...register('newBrand')} placeholder="Entrer une nouvelle marque" />
                             ) : (
-                                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" id="otherBrand" type="text" style={{ visibility: 'hidden' }} placeholder="Enter new brand" />
+                                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" id="otherBrand" type="text" style={{ visibility: 'hidden' }} placeholder="Entrer une nouvelle marque" />
                             )}
                             <label className="block text-gray-700 text-sm sm:text-base font-bold mb-2 mt-4" htmlFor="model">
                                 Model:
                             </label>
                             <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" {...register('model')}>
                                 {models.length > 0 ? models.map((model, index) => <option key={index} value={model.id}>{model.name}</option>) : null}
-                                <option value="other">Other</option>
+                                <option value="other">Autre</option>
                             </select>
                             {watch('model') === 'other' || models.length === 0 ? (
-                                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" id="otherModel" type="text" {...register('newModel')} placeholder="Enter new model" />
+                                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" id="otherModel" type="text" {...register('newModel')} placeholder="Entrer nouveau modèle" />
                             ) : (
-                                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" id="otherModel" type="text" style={{ visibility: 'hidden' }} placeholder="Enter new model" />
+                                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" id="otherModel" type="text" style={{ visibility: 'hidden' }} placeholder="Entrer nouveau modèle" />
                             )}
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4" type="button" onClick={() => setStep(2)}>
-                                Next
+                                Continuer
                             </button>
                         </div>
                     )}
                     {step === 2 && (
                         <div>
                             <label className="block text-gray-700 text-sm sm:text-base font-bold mb-2" htmlFor="category">
-                                Category:
+                                Categorie:
                             </label>
                             <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" {...register('category')}>
                                 {categories.length > 0 ? categories.map((category, index) => <option key={index} value={category.id}>{category.name}</option>) : null}
-                                <option value="other">Other</option>
+                                <option value="other">Autre</option>
                             </select>
                             {watch('category') === 'other'  || categories.length === 0 ?(
-                                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" id="otherCategory" type="text" {...register('newCategory')} placeholder="Enter new category" />
+                                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" id="otherCategory" type="text" {...register('newCategory')} placeholder="Ajouter une nouvelle categorié" />
                                 ) :
-                                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" id="otherCategory" type="text" style={{ visibility: 'hidden' }} placeholder="Enter new category"  />
+                                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" id="otherCategory" type="text" style={{ visibility: 'hidden' }} placeholder="Ajouter une nouvelle categorié"  />
                             }
                             <div className="flex justify-between mt-4">
                                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={() => setStep(1)}>
-                                    Previous
+                                    Precedent
                                 </button>
                                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={() => setStep(3)}>
-                                    Next
+                                    Continuer
                                 </button>
                             </div>
                         </div>
@@ -200,15 +200,15 @@ export const AddProductForm = memo(() => {
                     {step === 3 && (
                         <div className="mt-20">
                             <label className="block text-gray-700 text-sm sm:text-base font-bold mb-2 mt-4" htmlFor="name">
-                                Name:
+                                Le nom de la piece:
                             </label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" {...register('name')} />
                             <label className="block text-gray-700 text-sm sm:text-base font-bold mb-2 mt-4" htmlFor="price">
-                                Price:
+                                Prix:
                             </label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" type="number" {...register('price')} />
                             <label className="block text-gray-700 text-sm sm:text-base font-bold mb-2 mt-4" htmlFor="quantity">
-                                Quantity:
+                                Quantité:
                             </label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="quantity" type="number" {...register('quantity')} />
                             <label className="block text-gray-700 text-sm sm:text-base font-bold mb-2 mt-4" htmlFor="description">
@@ -221,9 +221,9 @@ export const AddProductForm = memo(() => {
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="images" type="file" {...register('images')} multiple />
                             <div className="flex justify-between mt-4">
                                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={() => setStep(2)}>
-                                    Previous
+                                    Precedent
                                 </button>
-                                <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Submit" />
+                                <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Envoyer" />
                             </div>
                         </div>
                     )}
