@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import cls from './Products.module.css';
 import classNames from 'classnames';
 
-interface Product {
+export interface Product {
     id: string;
     name: string;
     description: string;
@@ -19,9 +19,7 @@ export const Products = () => {
     console.log('PRODUCTS', products)
 
     useEffect(() => {
-        fetch('/api/filter/products', { cache: 'no-store', headers: {
-                'Cache-Control': 'no-store'
-            } }) // Путь к вашему API
+        fetch('/api/filter/products', { next: { revalidate: 0 }})
             .then(response => response.json())
             .then(data => setProducts(data));
     }, [])
