@@ -19,7 +19,9 @@ export const Products = () => {
     console.log('PRODUCTS', products)
 
     useEffect(() => {
-        fetch('/api/filter/products', { cache: 'no-store' }) // Путь к вашему API
+        fetch('/api/filter/products', { cache: 'no-store', headers: {
+                'Cache-Control': 'no-store'
+            } }) // Путь к вашему API
             .then(response => response.json())
             .then(data => setProducts(data));
     }, [])
