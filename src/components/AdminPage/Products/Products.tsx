@@ -24,6 +24,7 @@ export const Products = () => {
             .then(data => setProducts(data));
     }, [])
 
+
     return (
         <div className={cls.flexContainer}>
             <div className={cls.mainDiv}>
