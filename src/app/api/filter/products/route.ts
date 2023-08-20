@@ -1,6 +1,7 @@
 import {NextRequest, NextResponse} from "next/server";
 import {connect} from "@/dbConfig/dbConfig";
 import {Product, Model, Category, Marque} from '@/models/Buisnes';
+import {headers} from "next/headers";
 
 
 
@@ -34,7 +35,11 @@ export async function GET(request: NextRequest) {
             model: product.model.name,
             createdAt: product.createdAt.toISOString().substring(0,10),
         }));
-        return NextResponse.json(transformedProducts);
+        return NextResponse.json(transformedProducts, {headers: {
+                'Cache-Control': 'public, s-maxage=1',
+                'CDN-Cache-Control': 'public, s-maxage=60',
+                'Vercel-CDN-Cache-Control': 'public, s-maxage=3600',
+            }});
     } catch (error: any) {
         return NextResponse.json({error: error.message}, {status: 500});
     }
