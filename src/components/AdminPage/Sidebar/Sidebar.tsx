@@ -1,3 +1,4 @@
+"use client"
 import React, {useState} from 'react';
 import cls from './Sidebar.module.css'
 import classNames from "classnames";

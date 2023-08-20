@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from 'react';
 import cls from './Products.module.css';
 import classNames from 'classnames';
@@ -16,10 +17,9 @@ export interface Product {
 
 export const Products = () => {
     const [products, setProducts] = useState<Product[]>([]);
-    console.log('PRODUCTS', products)
 
     useEffect(() => {
-        fetch('/api/filter/products', { next: { revalidate: 0 }})
+        fetch('/api/filter/products', { next: { revalidate: 2 }})
             .then(response => response.json())
             .then(data => setProducts(data));
     }, [])
