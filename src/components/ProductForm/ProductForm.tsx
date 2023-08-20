@@ -3,6 +3,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import axios from "axios";
 import {Sidebar} from "@/components/AdminPage/Sidebar/Sidebar";
 import {Toaster, toast} from "react-hot-toast";
+import {useAppDispatch} from "@/lib/useAppDispatch/useAppDispatch";
+import {productActions} from "@/slices/productSlice/productSlice";
 
 
 type FormValues = {
@@ -30,7 +32,7 @@ export const AddProductForm = memo(() => {
     const [models, setModels] = useState<BrandValues[]>([]);
     const [categories, setCategories] = useState<BrandValues[]>([]);
     const [step, setStep] = useState(1);
-
+    const dispatch = useAppDispatch()
 
     const brand = watch('brand');
     const model = watch('model');
@@ -120,9 +122,10 @@ export const AddProductForm = memo(() => {
         await Promise.all(uploadPromises);
         const response = await axios.post('/api/products', finalData)
         if (response.status === 200) {
-            toast.success('Votre article à été ajouté')
-            setStep(1)
-            reset()
+            dispatch(productActions.addProduct(response.data));
+            toast.success('Votre article à été ajouté');
+            setStep(1);
+            reset();
 
         } else {
             toast.error('Une erreur est survenue')

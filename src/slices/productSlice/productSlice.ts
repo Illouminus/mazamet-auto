@@ -16,21 +16,10 @@ export const productSlice = createSlice({
     reducers: {
         setProductsList: (state, action: PayloadAction<Product[]>) => {
             state.productList = action.payload;
+        },
+        addProduct: (state, action: PayloadAction<Product>) => {
+            state.productList.push(action.payload);
         }
-    },
-    extraReducers: (builder) => {
-        builder
-            .addCase(loginByUsername.pending, (state, action) => {
-                state.isLoading = true
-                state.error = false
-            })
-            .addCase(loginByUsername.fulfilled, (state, action) => {
-                state.isLoading = false
-            })
-            .addCase(loginByUsername.rejected, (state, action) => {
-                state.isLoading = true
-                state.error = false
-            })
     }
 })
 
