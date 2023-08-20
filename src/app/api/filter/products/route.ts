@@ -20,7 +20,7 @@ interface IProduct {
     __v: number;
 }
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
     try {
         await connect();
         const products: IProduct[] = await Product.find().populate('category').populate('model');
@@ -35,11 +35,7 @@ export async function GET(request: NextRequest) {
             model: product.model.name,
             createdAt: product.createdAt.toISOString().substring(0,10),
         }));
-        return NextResponse.json(transformedProducts, {headers: {
-                'Cache-Control': 'public, s-maxage=1',
-                'CDN-Cache-Control': 'public, s-maxage=60',
-                'Vercel-CDN-Cache-Control': 'public, s-maxage=3600',
-            }});
+        return NextResponse.json(transformedProducts);
     } catch (error: any) {
         return NextResponse.json({error: error.message}, {status: 500});
     }

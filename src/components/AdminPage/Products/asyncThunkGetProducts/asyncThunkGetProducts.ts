@@ -8,7 +8,7 @@ export const getProducts = createAsyncThunk<Product, void>(
     'products/getProductsList',
     async (authData, thunkAPI) => {
         try {
-            const response = await axios.get('/api/filter/products')
+            const response = await axios.post('/api/filter/products')
 
             if (!response.data) {
                 throw new Error()
