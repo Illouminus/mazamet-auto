@@ -1,8 +1,7 @@
-import {AsyncThunk, createAsyncThunk} from '@reduxjs/toolkit'
+import {createAsyncThunk} from '@reduxjs/toolkit'
 import axios from "axios";
 import {ErrorAutorisation} from "@/slices/loginSlice/types/loginSchema";
 import {loginActions} from "@/slices/loginSlice/loginSlice";
-import {USER_LOCALSTORAGE_KEY} from "@/lib/const/localstorage";
 
 
 

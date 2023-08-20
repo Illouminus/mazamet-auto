@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import {UserSchema} from "@/slices/userSlice/types/UserSchema";
-import {ErrorAutorisation, LoginSchema} from "@/slices/loginSlice/types/loginSchema";
+import {LoginSchema} from "@/slices/loginSlice/types/loginSchema";
 import {loginByUsername, User} from "@/components/UserForm/asyncThunkLogin/asyncThunkLogin";
 import {checkAuthStatus} from "@/lib/checkAuthStatus/checkAuthStatus";
 

@@ -1,28 +1,22 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import cls from './Products.module.css';
 import classNames from 'classnames';
-
-export interface Product {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    quantity: number;
-    images: string[];
-    category: string;
-    model: string;
-    createdAt: string;
-}
+import {useAppDispatch} from "@/lib/useAppDispatch/useAppDispatch";
+import {getProducts} from "@/components/AdminPage/Products/asyncThunkGetProducts/asyncThunkGetProducts";
+import {useSelector} from "react-redux";
+import {getProductsList} from "@/components/AdminPage/Products/selectors/productSelector";
 
 export const Products = () => {
-    const [products, setProducts] = useState<Product[]>([]);
+    const dispatch = useAppDispatch()
+    const products = useSelector(getProductsList)
 
     useEffect(() => {
-        fetch('/api/filter/products', { next: { revalidate: 2 }})
-            .then(response => response.json())
-            .then(data => setProducts(data));
-    }, [])
+        const fetchData = async() => {
+            await dispatch(getProducts())
+        }
+        fetchData().catch(console.error)
+    }, [dispatch])
 
 
     return (
@@ -91,4 +85,4 @@ export const Products = () => {
     );
 };
 
-export const fetchCache = 'force-no-store';
+
