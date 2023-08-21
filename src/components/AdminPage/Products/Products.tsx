@@ -6,6 +6,7 @@ import {useAppDispatch} from "@/lib/useAppDispatch/useAppDispatch";
 import {getProducts} from "@/components/AdminPage/Products/asyncThunkGetProducts/asyncThunkGetProducts";
 import {useSelector} from "react-redux";
 import {getProductsList} from "@/components/AdminPage/Products/selectors/productSelector";
+import Image from "next/image";
 
 export const Products = () => {
     const dispatch = useAppDispatch()
@@ -26,28 +27,32 @@ export const Products = () => {
                     <div className={cls.tableContainer}>
                         <table className={cls.table}>
                             <thead className={cls.tableHeader}>
-                            <tr>
+                            <tr >
                                 <th scope="col" className={classNames(cls.tableHeadCell, cls.textLeft, cls.smallFont, cls.textGray)}>
-                                    Product Name
+                                    Nom
                                 </th>
                                 <th scope="col" className={classNames(cls.tableHeadCell, cls.textLeft, cls.smallFont, cls.textGray)}>
                                     Description
                                 </th>
                                 <th scope="col" className={classNames(cls.tableHeadCell, cls.textLeft, cls.smallFont, cls.textGray)}>
-                                    Price
+                                    Prix
                                 </th>
                                 <th scope="col" className={classNames(cls.tableHeadCell, cls.textLeft, cls.smallFont, cls.textGray)}>
-                                    Quantity
+                                    Quantité
                                 </th>
                                 <th scope="col" className={classNames(cls.tableHeadCell, cls.textLeft, cls.smallFont, cls.textGray)}>
-                                    Category
+                                    Catégorie
                                 </th>
                                 <th scope="col" className={classNames(cls.tableHeadCell, cls.textLeft, cls.smallFont, cls.textGray)}>
                                     Model
                                 </th>
                                 <th scope="col" className={classNames(cls.tableHeadCell, cls.textLeft, cls.smallFont, cls.textGray)}>
-                                    Added On
+                                    Ajouté le
                                 </th>
+                                <th scope="col" className={classNames(cls.tableHeadCell, cls.textLeft, cls.smallFont, cls.textGray)}>
+                                    Modifier
+                                </th>
+
                             </tr>
                             </thead>
                             <tbody className={cls.tableBody}>
@@ -74,6 +79,23 @@ export const Products = () => {
                                     <td className={cls.tableCell}>
                                         <div className={classNames(cls.textSm, cls.textGray)}>{product.createdAt}</div>
                                     </td>
+                                    <td className={cls.tableCellIcons}>
+                                        <Image
+                                            src={'/images/icons/delete.svg'}
+                                            alt={'delete icon'}
+                                            width={20}
+                                            height={20}
+                                            className={cls.tableIconItem}
+                                        />
+                                        <Image
+                                            src={'/images/icons/edit.svg'}
+                                            alt={'edit icon'}
+                                            width={20}
+                                            height={20}
+                                            className={cls.tableIconItem}
+                                        />
+                                    </td>
+
                                 </tr>
                             ))}
                             </tbody>

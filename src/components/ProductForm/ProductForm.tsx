@@ -122,7 +122,6 @@ export const AddProductForm = memo(() => {
         await Promise.all(uploadPromises);
         const response = await axios.post('/api/products', finalData)
         if (response.status === 200) {
-            dispatch(productActions.addProduct(response.data));
             toast.success('Votre article à été ajouté');
             setStep(1);
             reset();
