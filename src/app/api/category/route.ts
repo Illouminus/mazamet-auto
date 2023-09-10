@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/dbConfig/dbConfig";
-import Category from "@/models/Category";
-import Product from "@/models/Product";
-import Marque from "@/models/Marque";
+import {Category, Product, Marque} from "@/models/Buisnes";
 import { getDataFromToken } from "@/lib/dataToken/DataToken";
 
 export async function GET(request: NextRequest) {

@@ -1,0 +1,22 @@
+.container {
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.cards_container{
+    display: flex;
+    align-self: flex-start;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .cards_container{
+        flex-direction: column;
+        margin: 20px;
+    }
+}

@@ -18,7 +18,6 @@ export async function POST(request: NextRequest) {
     try {
         await connect();
         let {name, type} = await request.json()
-        console.log('NAME TO BACK FOR S3', name, type)
 
         const fileParams = {
             Bucket: "les-amoureuses",

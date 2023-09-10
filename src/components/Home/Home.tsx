@@ -3,14 +3,15 @@ import Image from "next/image";
 import cls from './Home.module.css'
 import classNames from "classnames";
 import {acme} from "@/lib/fonts/fonts";
-
+import carImage from "../../../public/images/img/Car_filter.png"
 export const HomeComponent = () => {
 
     return (
         <div className={cls.container}>
             <div className={classNames(cls.container_car, acme.className)}>
                 <Image
-                    src={'/images/img/Car_filter.png'}
+                    src={carImage}
+                    placeholder={"blur"}
                     priority
                     fill
                     style={{

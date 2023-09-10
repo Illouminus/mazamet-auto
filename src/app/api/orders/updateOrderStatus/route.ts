@@ -1,7 +1,7 @@
 import {NextRequest, NextResponse} from "next/server";
 import {connect} from "@/dbConfig/dbConfig";
 import {getDataFromToken} from "@/lib/dataToken/DataToken";
-import Order from "@/models/Order";
+import {Order} from "@/models/Buisnes";
 
 export async function GET(request: NextRequest) {
     try {

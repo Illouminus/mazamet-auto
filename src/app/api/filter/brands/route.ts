@@ -1,11 +1,11 @@
 import {NextRequest, NextResponse} from "next/server";
 import {connect} from "@/dbConfig/dbConfig";
-import Marque from "@/models/Marque";
+import {Marque} from "@/models/Buisnes";
 
 interface IBrand {
     _id: string;
     name: string;
-    categories: string[];
+    models: string[];
     createdAt: Date;
     updatedAt: Date;
     __v: number;

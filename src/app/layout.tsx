@@ -2,8 +2,6 @@ import React from "react";
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import {Navbar} from "@/components/Navbar/Navbar";
-import {Footer} from "@/components/Footer/Footer";
 import {AuthProvider} from "@/providers/AuthProvider/AuthProvider";
 import {StoreProvider} from "@/providers/StoreProvider/StoreProvider";
 import {NavProvider} from "@/providers/NavProvider/NavProvider";

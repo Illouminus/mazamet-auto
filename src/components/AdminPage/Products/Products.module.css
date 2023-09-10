@@ -72,12 +72,11 @@
 }
 .tableIconItem{
     margin: 2px;
-    transition: transform .2s;
+    transition: transform .1s;
 }
 
 .tableIconItem:hover{
-    margin-top: 10px;
-
+    transform: scale(1.2);
 }
 
 .textSm {

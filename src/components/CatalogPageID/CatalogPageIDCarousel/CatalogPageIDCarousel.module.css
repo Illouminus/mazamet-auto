@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.seconds_photos {
+    display: flex;
+    gap: 20px;
+}
+
+.main_photo {
+    width: 100%;
+    position: relative;
+    height: 450px;
+}
+
+.main_image{
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.miniature_selected {
+    border-radius: 5px;
+    border: 1px solid #2C3033;
+}
+
+.miniature {
+    filter: invert(0.25);
+    border-radius: 5px;
+    border: 1px solid #2C3033;
+}
+

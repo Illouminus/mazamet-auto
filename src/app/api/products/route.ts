@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/dbConfig/dbConfig";
-import Product from "@/models/Product";
-import Marque from "@/models/Marque";
-import Model from "@/models/Model";
-import Category from "@/models/Category";
+import {Marque, Product, Model, Category} from "@/models/Buisnes";
+
 
 
 interface ProductData {
@@ -34,7 +32,7 @@ const checkExistsOrCreate = async (type: 'Brand' | 'Model' | 'Category', name: s
             }
             break;
         case 'Category':
-            existingEntity = await Category.findOne({ name,  model: parent });
+            existingEntity = await Category.findOne({ name, model: parent });
             if (!existingEntity) {
                 if (parent) {
                     existingEntity = await new Category({ name, model: parent}).save();
@@ -81,7 +79,6 @@ export async function POST(request: NextRequest) {
         const brand = await checkExistsOrCreate('Brand', brandName);
         const model = await checkExistsOrCreate('Model', modelName,  brand._id);
         const category = await checkExistsOrCreate('Category', categoryName, model._id);
-
         const newProduct = new Product({
             name,
             price,
@@ -92,6 +89,8 @@ export async function POST(request: NextRequest) {
             model: model._id,
             category: category._id
         });
+        category.products.push(newProduct._id);
+        category.save()
         await newProduct.save();
 
         return NextResponse.json(newProduct);
@@ -146,7 +145,6 @@ export async function DELETE(request: NextRequest) {
         const productId = request.nextUrl.searchParams.get('id');
 
         const deletedProduct = await Product.findByIdAndDelete(productId);
-
         if (!deletedProduct) {
             return NextResponse.json({error: 'Product not found'}, {status: 404});
         }

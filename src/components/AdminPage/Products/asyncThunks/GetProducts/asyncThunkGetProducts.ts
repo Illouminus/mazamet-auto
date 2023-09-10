@@ -1,21 +1,18 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
 import axios from "axios";
 import {Product} from "@/slices/productSlice/types/ProductSchema";
-import {productActions} from "@/slices/productSlice/productSlice";
 
 
-export const getProducts = createAsyncThunk<Product, void>(
+
+export const getProducts = createAsyncThunk<Product[], void>(
     'products/getProductsList',
     async (authData, thunkAPI) => {
         try {
             const response = await axios.post('/api/filter/products')
 
-            if (!response.data) {
-                throw new Error()
+            if (response.data) {
+                return response.data
             }
-            thunkAPI.dispatch(productActions.setProductsList(response.data))
-
-            return response.data
         } catch (error: any) {
             console.log(error)
             return thunkAPI.rejectWithValue({

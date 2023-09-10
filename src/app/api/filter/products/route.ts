@@ -1,10 +1,7 @@
 import {NextRequest, NextResponse} from "next/server";
 import {connect} from "@/dbConfig/dbConfig";
 import {Product, Model, Category, Marque} from '@/models/Buisnes';
-import {headers} from "next/headers";
-
-
-
+import {log} from "util";
 
 interface IProduct {
     _id: string;
@@ -13,6 +10,7 @@ interface IProduct {
     price: number;
     quantity: number;
     images: string[];
+    brand: typeof Marque;
     category: typeof Category;
     model: typeof Model;
     createdAt: Date;
@@ -23,7 +21,7 @@ interface IProduct {
 export async function POST(request: NextRequest) {
     try {
         await connect();
-        const products: IProduct[] = await Product.find().populate('category').populate('model');
+        const products: IProduct[] = await Product.find().populate('category').populate('model').populate('brand').exec();
         const transformedProducts = products.map(product => ({
             id: product._id,
             name: product.name,
@@ -31,6 +29,10 @@ export async function POST(request: NextRequest) {
             price: product.price,
             quantity: product.quantity,
             images: product.images,
+            brand: {
+                id: product.brand._id,
+                name: product.brand.name,
+            },
             category: product.category.name,
             model: product.model.name,
             createdAt: product.createdAt.toISOString().substring(0,10),

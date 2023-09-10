@@ -1,7 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import {connect} from "@/dbConfig/dbConfig";
-import Model from "@/models/Model";
-import Category from "@/models/Category";
+import {Category} from "@/models/Buisnes";
 
 interface IModel {
     _id: string;

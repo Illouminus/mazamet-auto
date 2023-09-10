@@ -1,0 +1,100 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 30px;
+    width: 90%;
+}
+
+.title{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.price {
+    font-size: 30px;
+}
+
+.pricices{
+    display: flex;
+    align-items: center;
+}
+
+.pricices div{
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+
+.car_details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 25px;
+    width: 80%;
+}
+
+.buy_section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+    margin-top: auto;
+}
+
+.buy_button {
+    width: 60%;
+    color: white;
+    letter-spacing: 2px;
+    font-size: 19px;
+    height: 55px;
+    border-radius: 10px;
+    background: #2C3033;
+    transition: 0.2s;
+    border: 1px solid black;
+}
+
+.buy_button:hover {
+    background: inherit;
+    color: #000;
+}
+.select {
+    width: 25%;
+    height: 55px;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    font-size: 22px;
+}
+
+.select span{
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+    .select {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .title{
+        font-size: 30px;
+    }
+
+    .price {
+        font-size: 25px;
+    }
+
+    .car_details {
+        font-size: 20px;
+    }
+    .buy_button {
+        font-size: 15px;
+    }
+    .select {
+        font-size: 18px;
+    }
+}

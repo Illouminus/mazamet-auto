@@ -4,7 +4,6 @@ import axios from "axios";
 import {Sidebar} from "@/components/AdminPage/Sidebar/Sidebar";
 import {Toaster, toast} from "react-hot-toast";
 import {useAppDispatch} from "@/lib/useAppDispatch/useAppDispatch";
-import {productActions} from "@/slices/productSlice/productSlice";
 
 
 type FormValues = {
