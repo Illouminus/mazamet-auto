@@ -7,6 +7,7 @@ import { motion } from "framer-motion"
 interface catalogPageIdCarouselProps {
     images: string[]
 }
+
 export const CatalogPageIdCarousel = (props: catalogPageIdCarouselProps) => {
     const [index, setIndex] = useState<number>(0)
     const nextImage = (i?: number) => {
@@ -22,7 +23,7 @@ export const CatalogPageIdCarousel = (props: catalogPageIdCarouselProps) => {
                     className={cls.main_photo}
                 >
                         <Image
-                            src={props.images[index]}
+                            src={props.images[index] ? props.images[index] : '/images/icons/oops.png'}
                             alt={'main photo'}
                             className={cls.main_image}
                             fill

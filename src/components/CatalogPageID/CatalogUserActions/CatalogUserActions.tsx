@@ -2,6 +2,7 @@ import {Product} from "@/slices/productSlice/types/ProductSchema";
 import cls from './CatalogUserActions.module.css'
 import React, {useState} from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 interface CatalogUserActionsProps {
     product: Product
@@ -19,6 +20,12 @@ export const CatalogUserActions = ({product}: CatalogUserActionsProps) => {
     const getAmountMinus = () => {
         if (amount != 0)
             setAmount((prev) => prev -= 1)
+    }
+
+    const buyHandler = async (id: string) => {
+        const {data} = await axios.post('/api/payment', {id, amount})
+        console.log(data)
+        window.location.assign(data)
     }
     return (
         <div className={cls.container}>
@@ -46,6 +53,7 @@ export const CatalogUserActions = ({product}: CatalogUserActionsProps) => {
                     whileTap={{scale: 0.8}}
                     onHoverStart={e => {}}
                     onHoverEnd={e => {}}
+                    onClick={() => buyHandler(product.id)}
                 >
                     ACHETER
                 </motion.button>

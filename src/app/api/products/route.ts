@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/dbConfig/dbConfig";
 import {Marque, Product, Model, Category} from "@/models/Buisnes";
-
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 
 interface ProductData {
@@ -79,6 +79,23 @@ export async function POST(request: NextRequest) {
         const brand = await checkExistsOrCreate('Brand', brandName);
         const model = await checkExistsOrCreate('Model', modelName,  brand._id);
         const category = await checkExistsOrCreate('Category', categoryName, model._id);
+
+
+        const product = await stripe.products.create({
+            name: name,
+            description: description,
+            images: images,
+        });
+
+
+        const stripePrice = await stripe.prices.create({
+            unit_amount: price * 100,
+            currency: 'eur',
+            product: product.id,
+        });
+
+
+
         const newProduct = new Product({
             name,
             price,
@@ -87,13 +104,21 @@ export async function POST(request: NextRequest) {
             images,
             brand: brand._id,
             model: model._id,
-            category: category._id
+            category: category._id,
+            stripeProductID: product.id, // Сохраните идентификатор продукта Stripe
+            stripePriceID: stripePrice.id, // Сохраните идентификатор цены Stripe
         });
         category.products.push(newProduct._id);
         category.save()
         await newProduct.save();
+        if (newProduct) {
+            console.log('STRIPE', product);
+            return NextResponse.json(newProduct);
+        } else {
+            return NextResponse.json({ error: "Error on create stripe product" }, { status: 500 });
+        }
 
-        return NextResponse.json(newProduct);
+
     } catch (error: any) {
         return NextResponse.json({error: error.message}, {status: 500});
     }
