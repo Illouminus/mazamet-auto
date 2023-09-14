@@ -75,10 +75,10 @@ export async function POST(request: NextRequest) {
             model: modelName,
             category: categoryName
         }: ProductData = await request.json();
+
         const brand = await checkExistsOrCreate('Brand', brandName);
         const model = await checkExistsOrCreate('Model', modelName,  brand._id);
         const category = await checkExistsOrCreate('Category', categoryName, model._id);
-
 
 
         const product = await stripe.products.create({
