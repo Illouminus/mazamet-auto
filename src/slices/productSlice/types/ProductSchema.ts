@@ -7,6 +7,8 @@ export interface Product {
     images: string[];
     category: string;
     model: string;
+    stripeProductID: string;
+    stripePriceID: string;
     brand: {
         id: string,
         name: string
@@ -24,6 +26,8 @@ export interface selectedProduct {
     category: string;
     model: string;
     brand: string;
+    stripeProductID: string;
+    stripePriceID: string;
     updatedAt: string;
     createdAt: string;
 }

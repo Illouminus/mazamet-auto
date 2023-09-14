@@ -11,6 +11,8 @@ const ProductSchema = new Schema({
     brand: {type: Schema.Types.ObjectId, ref: 'CarBrand', required: true},
     category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
     model: { type: Schema.Types.ObjectId, ref: 'Model', required: true },
+    stripeProductID: { type: String, required: true },
+    stripePriceID: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
 });

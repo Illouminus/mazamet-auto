@@ -11,6 +11,8 @@
 .cards_container{
     display: flex;
     align-self: flex-start;
+    flex-wrap: wrap;
+    margin: 30px;
     gap: 30px;
 }
 

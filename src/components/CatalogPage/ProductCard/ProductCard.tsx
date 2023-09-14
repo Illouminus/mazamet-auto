@@ -4,17 +4,18 @@ import cls from './ProductCard.module.css'
 import Image from "next/image";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
+import axios from "axios";
+import {log} from "util";
 
 interface productCardInterface {
     item?: selectedProduct
 }
 export const ProductCard = ({ item }: productCardInterface) => {
     const router = useRouter()
-    console.log('ITEM', item)
     const routeHandler = (id: string) => {
-        console.log('COMMING ID', id)
         router.push(`/catalog/${id}`, { scroll: false })
     }
+
     return (
         <motion.div
             className={cls.container}
@@ -55,9 +56,7 @@ export const ProductCard = ({ item }: productCardInterface) => {
                         <p>€ {item?.price}</p>
                         <div>€{item?.price && item?.price + (item.price * 0.20)}</div>
                     </div>
-
                 </div>
-
                 <button className={cls.buy_button}>
                     <span>
                         <img
@@ -66,7 +65,7 @@ export const ProductCard = ({ item }: productCardInterface) => {
                             alt={'image of buy icon'}
                         />
                     </span>
-                    <span>Acheter</span>
+                    <span >Acheter</span>
                 </button>
 
         </motion.div>
