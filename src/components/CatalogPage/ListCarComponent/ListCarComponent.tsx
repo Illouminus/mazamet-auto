@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from "framer-motion"
 import {marquesList} from "@/components/CatalogPage/CatalogHome/CatalogHome";
 import cls from './ListCarComponent.module.css'
+import {Loader} from "@/components/Loader/Loader";
 interface listCarProps {
     items?: marquesList[] ;
     setItem: (marque: string) => void;
@@ -22,6 +23,8 @@ export const ListCarComponent = (props: listCarProps) => {
             opacity: 0,
         }
     }
+    if (!items)
+        return <Loader />
     return (
         <div className={cls.container}>
             {items && items.map((el, i) => (

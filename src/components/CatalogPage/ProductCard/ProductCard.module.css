@@ -3,16 +3,23 @@
     justify-content: center;
     flex-direction: column;
     cursor: pointer;
-    width: 300px;
+    width: 250px;
+    height: 350px;
     padding: 10px;
     border-radius: 5%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .imageCard{
+    height: 200px;
     border-radius: 5px;
+
 }
 
+.imageCardError {
+    height: 200px;
+
+}
 .info_card{
     display: flex;
     flex-direction: column;

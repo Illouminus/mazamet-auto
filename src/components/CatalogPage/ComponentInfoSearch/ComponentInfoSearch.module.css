@@ -1,0 +1,27 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.info_car{
+    font-size: 24px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-style: italic;
+}
+
+.description {
+    line-height: 30px;
+    opacity: 0.7;
+    width: 90%;
+    margin-bottom: 30px;
+}
+
+.filter_options {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 20px 0;
+}

@@ -1,11 +1,11 @@
 import React from 'react';
-import {Product, selectedProduct} from "@/slices/productSlice/types/ProductSchema";
+import { selectedProduct} from "@/slices/productSlice/types/ProductSchema";
 import cls from './ProductCard.module.css'
 import Image from "next/image";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
-import axios from "axios";
-import {log} from "util";
+import {Loader} from "@/components/Loader/Loader";
+
 
 interface productCardInterface {
     item?: selectedProduct
@@ -15,7 +15,8 @@ export const ProductCard = ({ item }: productCardInterface) => {
     const routeHandler = (id: string) => {
         router.push(`/catalog/${id}`, { scroll: false })
     }
-
+    if (!item)
+        return <Loader />
     return (
         <motion.div
             className={cls.container}
@@ -25,13 +26,14 @@ export const ProductCard = ({ item }: productCardInterface) => {
             animate={{
                 opacity: 1
         }}
-            transition={{ duration: 0.5}}
+            transition={{ duration: 0.2}}
             whileHover={{scale: 1.1}}
             whileTap={{scale: 0.9}}
             onHoverStart={e => {}}
             onHoverEnd={e => {}}
             onClick={() => routeHandler(item?._id ? item?._id : '')}
         >
+
             {item?.images && item.images[0] ?
                 <Image
                     src={item?.images && item.images[0]}
@@ -39,14 +41,16 @@ export const ProductCard = ({ item }: productCardInterface) => {
                     className={cls.imageCard}
                     width={280}
                     height={300}
+                    style={{objectFit: "contain"}}
                 />
                 :
                 <Image
-                    src={'/images/icons/oops.png'}
-                    alt={'Error of loading image'}
-                    className={cls.imageCard}
-                    width={215}
-                    height={250}
+                    src={'/images/icons/error_image.png'}
+                    alt={'Images de piece a vendre'}
+                    className={cls.imageCardError}
+                    width={280}
+                    height={300}
+                    style={{objectFit: "none"}}
                 />
             }
 
@@ -65,7 +69,7 @@ export const ProductCard = ({ item }: productCardInterface) => {
                             alt={'image of buy icon'}
                         />
                     </span>
-                    <span >Acheter</span>
+                    <span>Acheter</span>
                 </button>
 
         </motion.div>

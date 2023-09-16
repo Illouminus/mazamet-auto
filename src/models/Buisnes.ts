@@ -28,7 +28,7 @@ const CarBrandSchema = new Schema({
 
 const ModelSchema = new Schema({
     name: { type: String, required: true },
-    brand: { type: Schema.Types.ObjectId, ref: 'Brand', required: true },
+    brand: { type: Schema.Types.ObjectId, ref: 'CarBrand', required: true },
     categories: [{ type: Schema.Types.ObjectId, ref: 'Category', required: true }],
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },

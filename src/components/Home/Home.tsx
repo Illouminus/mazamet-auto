@@ -4,6 +4,8 @@ import cls from './Home.module.css'
 import classNames from "classnames";
 import {acme} from "@/lib/fonts/fonts";
 import carImage from "../../../public/images/img/Car_filter.png"
+import Link from "next/link";
+import {CarCard} from "@/components/Home/CarCard/CarCard";
 export const HomeComponent = () => {
 
     return (
@@ -30,72 +32,16 @@ export const HomeComponent = () => {
             </div>
 
             <div className={cls.container_catalog_link}>
-                <button>
+                <Link href={'/catalog'} className={cls.catalog_link}>
                     VOIR LE CATALOG
-                </button>
+                </Link>
             </div>
-
             <div className={cls.container_car_parts}>
-                <div>
-                    <Image
-                        src={'/images/car_parts/car_wheel.png'}
-                        priority={false}
-                        height={200}
-                        width={200}
-                        style={{
-                            objectFit:"contain",
-                            objectPosition:"center"
-                        }}
-                        alt={'Image of car'}
-                    />
-                    <h3>Des roues</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                </div>
-                <div>
-                    <Image
-                        src={'/images/car_parts/car_moteur.png'}
-                        height={200}
-                        width={200}
-                        style={{
-                            objectFit:"contain",
-                            objectPosition:"center"
-                        }}
-                        alt={'Image of car'}
-                    />
-                    <h3>Des moteurs</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                </div>
-                <div>
-                    <Image
-                        src={'/images/car_parts/car_frain.png'}
-                        width={200}
-                        height={200}
-                        style={{
-                            objectFit:"cover",
-                            objectPosition:"center"
-                        }}
-                        alt={'Image of car'}
-                    />
-                    <h3>Des frains</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                </div>
-                <div>
-                    <Image
-                        src={'/images/car_parts/car_alternateur.png'}
-                        priority={false}
-                        width={200}
-                        height={200}
-                        style={{
-                            objectFit:"contain",
-                            objectPosition:"center"
-                        }}
-                        alt={'Image of car'}
-                    />
-                    <h3>Des alternateurs</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                </div>
+                <CarCard image={'/images/car_parts/car_wheel.png'} title={'Des roues'} description={'Découvrez notre sélection de pneus de haute qualité et de jantes élégantes pour une conduite en toute sécurité et un style exceptionnel.'} />
+                <CarCard image={'/images/car_parts/car_moteur.png'} title={'Des moteurs'} description={'Trouvez des moteurs puissants et des pièces de rechange de qualité pour optimiser les performances de votre véhicule.'} />
+                <CarCard image={'/images/car_parts/car_frain.png'} title={'Des frains'} description={'Assurez-vous un freinage fiable avec nos freins et accessoires de haute performance, garantissant votre sécurité sur la route.'} />
+                <CarCard image={'/images/car_parts/car_alternateur.png'} title={'Des alternateurs'} description={'Nos alternateurs et composants électriques de qualité supérieure garantissent un système électrique fiable pour votre véhicule.'} />
             </div>
-
             <div className={cls.container_car_full}>
                 <div className={cls.container_car_full_center}>
                     <div>

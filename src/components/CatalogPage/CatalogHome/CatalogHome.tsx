@@ -6,6 +6,10 @@ import {ListCarComponent} from "@/components/CatalogPage/ListCarComponent/ListCa
 import axios from "axios";
 import { selectedProduct} from "@/slices/productSlice/types/ProductSchema";
 import {ProductCard} from "@/components/CatalogPage/ProductCard/ProductCard";
+import {FilterComponent} from "@/components/CatalogPage/FilterComponent/FilterComponent";
+import {Loader} from "@/components/Loader/Loader";
+import {ProductCardSkeleton} from "@/components/CatalogPage/ProductCard/ProductCardSkeleton/ProductCardSkeleton";
+import {ComponentInfoSearch} from "@/components/CatalogPage/ComponentInfoSearch/ComponentInfoSearch";
 
 
 export interface marquesList {
@@ -20,6 +24,7 @@ export const CatalogHome = () => {
     const [models, setModel] = useState<marquesList[]>();
     const [categories, setCategories] = useState<marquesList[]>();
     const [selectedProducts, setSelectedProducts] = useState<selectedProduct[]>();
+    const [finalInfo, setFinalInfo] = useState<string[]>()
     const products = useSelector(getProductsList);
 
     useEffect(() => {
@@ -37,6 +42,7 @@ export const CatalogHome = () => {
         setStep('step2');
     }, [])
 
+
     const selectModel = useCallback(async (id: string) => {
         const response = await axios.get(`/api/filter/categories?model=${id}`)
         setCategories(response.data);
@@ -45,7 +51,8 @@ export const CatalogHome = () => {
 
     const selectCategory = useCallback(async (id: string) => {
         const response = await axios.get(`/api/filter/category?id=${id}`)
-        setSelectedProducts(response.data);
+        setSelectedProducts(response.data.item);
+        setFinalInfo([response.data.brand.name, response.data.model.name,  response.data.category, response.data.item.length])
         setStep('step4');
     }, [])
 
@@ -53,29 +60,32 @@ export const CatalogHome = () => {
         <>
             <div className={cls.container}>
                 {step == 'step1' &&
-                    <>
-                        {/*<div>Veuillez choisir votre marque automobile.</div>*/}
                         <ListCarComponent items={brands} setItem={selectMarque} />
-                    </>
                 }
                 {step == 'step2' &&
-                    <>
-                        {/*<div>Veuillez choisir votre model automobile.</div>*/}
                         <ListCarComponent items={models} setItem={selectModel} />
-                    </>
                 }
                 {step == 'step3' &&
-                    <>
-                        {/*<div>Veuillez choisir la catégorie.</div>*/}
                         <ListCarComponent items={categories} setItem={selectCategory} />
-                    </>
                 }
                 {step == 'step4' &&
-                    <div className={cls.cards_container}>
-                        {selectedProducts && selectedProducts?.map(el => (
-                            <ProductCard item={el} key={el._id}/>
-                        ))}
-                    </div>
+                    <>
+                        <FilterComponent />
+                        <div className={cls.container_info}>
+                            <ComponentInfoSearch infos={finalInfo}/>
+                            <div className={cls.cards_container}>
+                                {selectedProducts ?
+                                    selectedProducts?.map(el => (
+                                        <ProductCard item={el} key={el._id}/>
+                                    ))
+                                    :
+                                    <ProductCardSkeleton />
+                                }
+                            </div>
+                        </div>
+
+                    </>
+
                 }
             </div>
         </>
