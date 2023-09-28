@@ -40,7 +40,7 @@ export const productSlice = createSlice({
             .addCase(deleteProduct.fulfilled, (state, action) => {
                 state.isLoading = false
                 console.log('ACTION: ', action.payload);
-                state.productList = state.productList.filter(item => item.id != action.payload)
+                state.productList = state.productList.filter(item => item._id != action.payload)
             })
             .addCase(deleteProduct.rejected, (state, action) => {
                 state.isLoading = true
