@@ -61,7 +61,7 @@ export const Products = () => {
                             </thead>
                             <tbody className={cls.tableBody}>
                             {products.map((product) => (
-                                <tr key={product.id}>
+                                <tr key={product._id}>
                                     <td className={cls.tableCell}>
                                         <div className={classNames(cls.textSm, cls.textGrayDark)}>{product.name}</div>
                                     </td>
@@ -84,7 +84,7 @@ export const Products = () => {
                                         <div className={classNames(cls.textSm, cls.textGray)}>{product.createdAt}</div>
                                     </td>
                                     <td className={cls.tableCellIcons}>
-                                        <div onClick={() => deleteHandler(product.id)}>
+                                        <div onClick={() => deleteHandler(product._id)}>
                                             <Image
                                                 src={'/images/icons/delete.svg'}
                                                 alt={'delete icon'}
