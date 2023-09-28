@@ -25,7 +25,12 @@ export async function POST(request: NextRequest) {
             success_url: `${process.env.BASE_URL}/?success=true`,
             cancel_url: `${process.env.BASE_URL}/?canceled=true`,
             // automatic_tax: {enabled: true}
+            metadata: {
+                productId: product.id.toString(), // Assuming product.id is a number or ObjectId, convert it to string
+                quantity: data.amount.toString()
+            }
         });
+        console.log(session)
         return NextResponse.json(session.url)
     } catch (error: any) {
         return NextResponse.json({error: error.message}, {status: 500});

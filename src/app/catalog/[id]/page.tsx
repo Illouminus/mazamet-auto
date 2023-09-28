@@ -1,27 +1,46 @@
-'use client'
-import {FC, useEffect, useState} from "react";
 import {CatalogPageIdHome} from "@/components/CatalogPageID/CatalogPageIDHome/CatalogPageIDHome";
-import {Product} from "@/slices/productSlice/types/ProductSchema";
-import {useSelector} from "react-redux";
-import {getProductsList} from "@/components/AdminPage/Products/selectors/productSelector";
+import {Metadata} from "next";
 
 interface pageProps {
     params: {id: string}
 }
 
-const Page = ({params}: pageProps) => {
-    const [product, setProduct] = useState<Product>()
-    const products = useSelector(getProductsList);
+export async function generateMetadata(
+    { params }: pageProps,
 
-    useEffect(() => {
-            const foundProduct = products.find((el) => el.id === params.id);
-            setProduct(foundProduct);
-    }, [products, params.id]);
+): Promise<Metadata> {
+    // read route params
+    const id = params.id
+
+    // fetch data
+    const product = await getData(params.id)
+
+
+    return {
+        title: product.name,
+    }
+}
+
+async function getData(id: string) {
+    const res = await fetch(`${process.env.BASE_URL}/api/products?id=${id}`)
+    // The return value is *not* serialized
+    // You can return Date, Map, Set, etc.
+
+    if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json()
+}
+
+export default async function CatalogPageId ({params}: pageProps)  {
+    const product = await getData(params.id)
 
     return (
-        <CatalogPageIdHome  product={product}/>
+        <CatalogPageIdHome product={product}/>
     )
 }
 
 
-export default Page;
+

@@ -1,52 +1,60 @@
-import {NextRequest, NextResponse} from "next/server";
-import {connect} from "@/dbConfig/dbConfig";
-import {Order, Product} from "@/models/Buisnes";
+import { NextRequest, NextResponse } from "next/server";
+import { connect } from "@/dbConfig/dbConfig";
+import { Order, Product } from "@/models/Buisnes";
+import { StripeEvent } from "./stripeTypes";
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-export async function POST(request: NextRequest) {
+const endpointSecret = "whsec_S8Fr1SkFXySjoZtIOrmdBn4VP8PvqmRQ";
+
+export async function POST(request: NextRequest): Promise<NextResponse> {
     try {
-        await connect();
-        const { customer, items, totalPrice } = await request.json();
+        // @ts-ignore
+        const sig: string | string[] | undefined = request.headers['stripe-signature'];
 
-        // Проверяем, что все необходимые данные предоставлены
-        if (!customer || !items || !totalPrice) {
-            return NextResponse.json({ error: "Missing required data" }, { status: 400 });
+        let event: StripeEvent;
+
+        try {
+            event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+        } catch (err: any) {
+            return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
         }
 
-        if (!Array.isArray(items) || items.length === 0) {
-            return NextResponse.json({ error: "Items must be a non-empty array" }, { status: 400 });
+        switch (event.type) {
+            case 'checkout.session.completed':
+                const session = event.data.object;
+
+                await connect();
+
+                // Извлечь информацию о заказе из объекта сессии
+                const customerEmail = session.customer_details.email;
+                const customerName = session.customer_details.name;
+                const totalPrice = session.amount_total;
+                const productId = session.metadata.productId;
+                const productQuantity = session.metadata.quantity;
+                const customerAddress = [session.shipping_details.address.city, session.shipping_details.address.postal_code, session.shipping_details.address.line1,]
+
+                // Создать новый заказ
+                const newOrder = new Order({
+                    customer: {
+                        name: customerName,
+                        email: customerEmail,
+                        address:customerAddress.toString()
+                    },
+                    items: {
+                        product: productId,
+                        quantity: productQuantity
+                    },
+                    totalPrice,
+                });
+
+                await newOrder.save();
+
+                //return NextResponse.json(newOrder);
+
+            default:
+                console.log(`Unhandled event type ${event.type}`);
+                return NextResponse.json({ message: `Unhandled event type ${event.type}` });
         }
-
-        // Проверяем, что товары существуют и доступны в достаточном количестве
-        for (let item of items) {
-            const product = await Product.findById(item.product).exec();
-
-            // Проверяем, что товар существует
-            if (!product) {
-                return NextResponse.json({ error: `Product with id ${item.product} does not exist` }, { status: 404 });
-            }
-
-            // Проверяем, что товар доступен в достаточном количестве
-            if (product.quantity < item.quantity) {
-                return NextResponse.json({ error: `Not enough product in stock for product id: ${item.product}` }, { status: 400 });
-            }
-
-            // Уменьшаем количество товара на складе
-            product.quantity -= item.quantity;
-            await product.save();
-        }
-
-        // Создаем новый заказ
-        const newOrder = new Order({
-            customer,
-            items,
-            totalPrice,
-            status: 'pending'
-        });
-
-        await newOrder.save();
-
-        // Возвращаем данные о новом заказе
-        return NextResponse.json(newOrder);
 
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });

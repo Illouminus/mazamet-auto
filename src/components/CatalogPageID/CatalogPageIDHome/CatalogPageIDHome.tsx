@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import {Product} from "@/slices/productSlice/types/ProductSchema";
 import cls from './CatalogPageIDHome.module.css'

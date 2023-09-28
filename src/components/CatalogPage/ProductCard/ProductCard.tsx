@@ -71,7 +71,6 @@ export const ProductCard = ({ item }: productCardInterface) => {
                     </span>
                     <span>Acheter</span>
                 </button>
-
         </motion.div>
     );
 };

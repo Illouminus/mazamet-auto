@@ -9,6 +9,7 @@ interface CatalogUserActionsProps {
 }
 
 export const CatalogUserActions = ({product}: CatalogUserActionsProps) => {
+    console.log(product)
     const [amount, setAmount] = useState<number>(0)
     const {name, price, model, brand, quantity, description} = product;
 
@@ -24,7 +25,7 @@ export const CatalogUserActions = ({product}: CatalogUserActionsProps) => {
 
     const buyHandler = async (id: string) => {
         const {data} = await axios.post('/api/payment', {id, amount})
-        console.log(data)
+        console.log('DATA FROM STRIPE', data)
         window.location.assign(data)
     }
     return (
@@ -53,7 +54,7 @@ export const CatalogUserActions = ({product}: CatalogUserActionsProps) => {
                     whileTap={{scale: 0.8}}
                     onHoverStart={e => {}}
                     onHoverEnd={e => {}}
-                    onClick={() => buyHandler(product.id)}
+                    onClick={() => buyHandler(product._id)}
                 >
                     ACHETER
                 </motion.button>

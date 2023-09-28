@@ -11,7 +11,7 @@ interface listCarProps {
 
 export const ListCarComponent = (props: listCarProps) => {
     const {setItem, items} = props;
-
+    console.log('ITEMS LIST', items)
     const listVariants = {
         visible: (i: any) => ({
             opacity: 1,
