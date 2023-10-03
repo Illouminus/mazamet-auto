@@ -9,7 +9,7 @@ interface CatalogUserActionsProps {
 }
 
 export const CatalogUserActions = ({product}: CatalogUserActionsProps) => {
-    console.log(product)
+    console.log('HOME CATALOG',product)
     const [amount, setAmount] = useState<number>(0)
     const {name, price, model, brand, quantity, description} = product;
 
@@ -25,7 +25,6 @@ export const CatalogUserActions = ({product}: CatalogUserActionsProps) => {
 
     const buyHandler = async (id: string) => {
         const {data} = await axios.post('/api/payment', {id, amount})
-        console.log('DATA FROM STRIPE', data)
         window.location.assign(data)
     }
     return (
@@ -37,7 +36,7 @@ export const CatalogUserActions = ({product}: CatalogUserActionsProps) => {
             </div>
             <hr />
             <div className={cls.car_details}>
-                <div>{brand.name} / {model}</div>
+                <div>{brand.name} / {model.name}</div>
                 <hr/>
                 <div>{description}</div>
             </div>

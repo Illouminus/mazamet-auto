@@ -24,12 +24,31 @@ export const CatalogHome = ({brands}) => {
     const [step, setStep] = useState<string>('step1');
     const [models, setModel] = useState<marquesList[]>();
     const [categories, setCategories] = useState<marquesList[]>();
-    const [selectedProducts, setSelectedProducts] = useState<selectedProduct[]>();
+    const [selectedProducts, setSelectedProducts] = useState<selectedProduct[]>([]);
     const [finalInfo, setFinalInfo] = useState<string[]>()
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const products = useSelector(getProductsList);
 
+    console.log(selectedProducts)
 
+    const filterBy = (exp: string) => {
+        let newProducts = [...selectedProducts]; // Создаем копию массива
+
+        switch (exp) {
+            case 'Trier par date':
+                // Предположим, у вас есть поле `createdAt` в каждом продукте
+                newProducts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+                break;
+            case 'Trier par popularité':
+                // Для примера просто перемешаем массив
+                newProducts = newProducts.sort(() => Math.random() - 0.5);
+                break;
+            default:
+                // Если "default", то оставляем массив без изменений
+                break;
+        }
+
+        setSelectedProducts(newProducts);
+    }
 
     const selectMarque = useCallback(async (id: string) => {
         setIsLoading(true)
@@ -62,6 +81,7 @@ export const CatalogHome = ({brands}) => {
             return <Loader />
     }
 
+
     return (
         <>
             <div className={cls.container}>
@@ -83,9 +103,12 @@ export const CatalogHome = ({brands}) => {
                 }
                 {step == 'step4' &&
                     <>
-                        <FilterComponent />
+                        <div className={cls.filter_component}>
+                            <FilterComponent  />
+                        </div>
+
                         <div className={cls.container_info}>
-                            <ComponentInfoSearch infos={finalInfo}/>
+                            <ComponentInfoSearch infos={finalInfo} filter={filterBy}/>
                             <div className={cls.cards_container}>
                                 {selectedProducts ?
                                     selectedProducts?.map(el => (

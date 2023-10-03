@@ -25,3 +25,30 @@
     width: 90%;
     margin: 20px 0;
 }
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        margin: 20px auto;
+    }
+
+    .number_resultat {
+        display: none;
+    }
+    .filter_options {
+        width: 100%;
+        border: 1px solid rgba(128, 128, 128, 0.69);
+    }
+    .select {
+        margin: 0 auto;
+    }
+
+    .info_car{
+        padding: 20px;
+    }
+
+    .description {
+        padding: 20px;
+        text-align: center;
+    }
+}

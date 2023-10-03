@@ -52,7 +52,8 @@ export async function GET(request: NextRequest) {
     try {
         await connect();
         const productId = request.nextUrl.searchParams.get('id');
-        const product = await Product.findById(productId);
+        const product = await Product.findById(productId).populate('brand').populate('model');
+        console.log(product)
         if (!product) {
             return NextResponse.json({error: 'Product not found'}, {status: 404});
         }

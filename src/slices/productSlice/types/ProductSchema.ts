@@ -6,7 +6,10 @@ export interface Product {
     quantity: number;
     images: string[];
     category: string;
-    model: string;
+    model: {
+        id: string,
+        name: string
+    };
     stripeProductID: string;
     stripePriceID: string;
     brand: {

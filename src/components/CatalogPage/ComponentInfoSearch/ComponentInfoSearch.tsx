@@ -3,6 +3,7 @@ import cls from './ComponentInfoSearch.module.css'
 import { HiArrowSmRight } from "react-icons/hi";
 interface ComponentInfoSearchProps {
     infos?: string[]
+    filter?: (exp: string) => void;
 }
 export const ComponentInfoSearch = (props: ComponentInfoSearchProps) => {
     const { infos} = props
@@ -20,8 +21,8 @@ export const ComponentInfoSearch = (props: ComponentInfoSearchProps) => {
             </div>
 
             <div className={cls.filter_options}>
-                <p>Affichage des {infos && infos[3]}  résultats</p>
-                <select>
+                <p className={cls.number_resultat}>Affichage des {infos && infos[3]}  résultats</p>
+                <select className={cls.select}  onChange={(e) => props.filter && props.filter(e.target.value)}>
                     <option>Trier par default</option>
                     <option>Trier par popularité</option>
                     <option>Trier par date</option>

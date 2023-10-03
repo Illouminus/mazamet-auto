@@ -9,12 +9,17 @@ const endpointSecret = "whsec_S8Fr1SkFXySjoZtIOrmdBn4VP8PvqmRQ";
 export async function POST(request: NextRequest): Promise<NextResponse> {
     try {
         // @ts-ignore
+        const jsonOri = request.body.toString();
+        const json = jsonOri.trim();
+        // @ts-ignore
         const sig: string | string[] | undefined = request.headers['stripe-signature'];
 
+        // @ts-ignore
+        const signature = sig.trim();
         let event: StripeEvent;
 
         try {
-            event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+            event = stripe.webhooks.constructEvent(request.body, signature, endpointSecret);
         } catch (err: any) {
             return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
         }

@@ -1,19 +1,41 @@
 "use client"
-import React, {useContext, useState} from 'react';
+import React, {useCallback, useContext, useState} from 'react';
 import Link from 'next/link';
 import styles from './Navbar.module.css';
 import axios from "axios";
 import {useRouter} from "next/navigation";
 import {AuthContext} from "@/providers/AuthProvider/AuthProvider";
+import {NavItem} from "./NavItem/NavItem";
+
+
 
 
 export const Navbar = () => {
     const router = useRouter()
     const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext)
     const [isOpen, setIsOpen] = useState(false);
-    const toggleNavbar = () => {
+
+
+
+    const links = isAuthenticated ? [
+        { href: '/catalog', label: 'Catalog' },
+        { href: '/about', label: 'A propos' },
+        { href: '/services', label: 'Services' },
+        { href: '/admin', label: 'Admin' }
+    ] : [
+        { href: '/catalog', label: 'Catalog' },
+        { href: '/services', label: 'Services' },
+        { href: '/about', label: 'A propos' },
+        { href: '/login', label: 'Login' }
+    ];
+    const toggleNavbar = useCallback(() => {
         setIsOpen(prevState => !prevState);
-    };
+    }, []);
+    const closeMobileMenu = useCallback(() => {
+        if (window.innerWidth <= 768) {
+            setIsOpen(false);
+        }
+    }, []);
 
 
     const signOut = async () => {
@@ -24,7 +46,6 @@ export const Navbar = () => {
             } catch (error) {
                 console.log(error)
             }
-
     }
 
 
@@ -39,7 +60,7 @@ export const Navbar = () => {
             </div>
             <div
                 className={isOpen ? styles.cross : styles.burger}
-                onClick={toggleNavbar}
+                onClick={() => toggleNavbar()}
             >
                 <div></div>
                 <div></div>
@@ -49,26 +70,10 @@ export const Navbar = () => {
                 className={`${isOpen ? styles.menuOpen : styles.menuClose} ${isOpen ? '' : styles.hidden}`}
             />
             <div className={isOpen ? styles.menuOpen : styles.menuClose}>
-                {isAuthenticated ? (
-                    <>
-                        <Link href={"/catalog"} className={styles.link} onClick={() => setIsOpen(false)}>Catalog</Link>
-                        <Link href={"/about"} className={styles.link} onClick={() => setIsOpen(false)}>A propos</Link>
-                        <Link href={"/services"} className={styles.link} onClick={() => setIsOpen(false)}>Services</Link>
-                        <Link href={"/admin"} className={styles.link} onClick={() => setIsOpen(false)}>Admin</Link>
-                        <button className={styles.link} onClick={signOut} >Logout</button>
-                    </>
-                ) : (
-                    <>
-                        <Link href={"/catalog"} className={styles.link}>Catalog</Link>
-                        <Link href={"/services"} className={styles.link}>Services</Link>
-                        <Link href={"/about"} className={styles.link}>A propos</Link>
-                        <Link href={"/login"} className={styles.link}>Login</Link>
-                    </>
-                )}
+                <NavItem links={links} onClick={closeMobileMenu}/>
             </div>
         </nav>
     );
 };
 
 
-export const fetchCache = 'force-no-store';

@@ -23,8 +23,6 @@ export async function generateMetadata(
 
 async function getData(id: string) {
     const res = await fetch(`${process.env.BASE_URL}/api/products?id=${id}`)
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
 
     if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
