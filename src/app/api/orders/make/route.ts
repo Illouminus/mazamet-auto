@@ -9,8 +9,7 @@ const endpointSecret = "whsec_S8Fr1SkFXySjoZtIOrmdBn4VP8PvqmRQ";
 export async function POST(request: NextRequest): Promise<NextResponse> {
     try {
 
-        const headersObj = Object.fromEntries(request.headers);
-        const headersKeys = Object.keys(headersObj).join(', ');
+        const body = await request.text();
 
         // @ts-ignore
         const sig: string | string[] | undefined = request.headers.get('stripe-signature');
@@ -18,7 +17,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         if (!sig) {
             console.error("No stripe-signature header found in the request.");
             return NextResponse.json({
-                error: `No stripe-signature header found. Available headers: ${headersKeys}. SIG: ${sig} SECRET: ${endpointSecret}`
+                error: `No stripe-signature header found. Available headers: ${body}. SIG: ${sig} SECRET: ${endpointSecret}`
             }, { status: 400 });
         }
 
@@ -26,7 +25,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         let event: StripeEvent;
 
         try {
-            event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+            event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
         } catch (err: any) {
             return NextResponse.json({ error: `Webhook Error: ${err.message} SIG: ${sig} SECRET: ${endpointSecret}` }, { status: 400 });
         }
