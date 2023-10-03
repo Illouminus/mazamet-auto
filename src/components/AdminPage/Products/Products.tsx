@@ -13,12 +13,6 @@ export const Products = () => {
     const dispatch = useAppDispatch()
     const products = useSelector(getProductsList)
 
-    // useEffect(() => {
-    //     const fetchData = async() => {
-    //         await dispatch(getProducts())
-    //     }
-    //     fetchData().catch(console.error)
-    // }, [dispatch])
 
     const deleteHandler = async(id: string) => {
         await dispatch(deleteProduct(id));
