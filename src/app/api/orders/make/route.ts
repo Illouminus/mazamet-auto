@@ -9,16 +9,19 @@ const endpointSecret = "whsec_S8Fr1SkFXySjoZtIOrmdBn4VP8PvqmRQ";
 export async function POST(request: NextRequest): Promise<NextResponse> {
     try {
 
+        const headersObj = Object.fromEntries(request.headers);
+        const headersKeys = Object.keys(headersObj).join(', ');
+
         // @ts-ignore
-        const sig: string | string[] | undefined = request.headers['stripe-signature'];
+        const sig: string | string[] | undefined = request.headers.get('stripe-signature');
 
         if (!sig) {
-            const headersKeys = Object.keys(request.headers).join(', ');
             console.error("No stripe-signature header found in the request.");
             return NextResponse.json({
                 error: `No stripe-signature header found. Available headers: ${headersKeys}. SIG: ${sig} SECRET: ${endpointSecret}`
             }, { status: 400 });
         }
+
 
         let event: StripeEvent;
 
