@@ -78,7 +78,7 @@ export const Products = () => {
                                         <div className={classNames(cls.textSm, cls.textGray)}>{product.category}</div>
                                     </td>
                                     <td className={cls.tableCell}>
-                                        <div className={classNames(cls.textSm, cls.textGray)}>{product.model}</div>
+                                        <div className={classNames(cls.textSm, cls.textGray)}>{product.model.name}</div>
                                     </td>
                                     <td className={cls.tableCell}>
                                         <div className={classNames(cls.textSm, cls.textGray)}>{product.createdAt}</div>
