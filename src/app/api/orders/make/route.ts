@@ -13,8 +13,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         const sig: string | string[] | undefined = request.headers['stripe-signature'];
 
         if (!sig) {
+            const headersKeys = Object.keys(request.headers).join(', ');
             console.error("No stripe-signature header found in the request.");
-            return NextResponse.json({ error: `No stripe-signature header found. REQ: ${request.headers} SIG: ${sig} SECRET: ${endpointSecret}` }, { status: 400 });
+            return NextResponse.json({
+                error: `No stripe-signature header found. Available headers: ${headersKeys}. SIG: ${sig} SECRET: ${endpointSecret}`
+            }, { status: 400 });
         }
 
         let event: StripeEvent;
