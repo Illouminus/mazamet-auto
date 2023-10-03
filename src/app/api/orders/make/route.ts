@@ -14,7 +14,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
         if (!sig) {
             console.error("No stripe-signature header found in the request.");
-            return NextResponse.json({ error: "No stripe-signature header found." }, { status: 400 });
+            return NextResponse.json({ error: `No stripe-signature header found. REQ: ${request.headers} SIG: ${sig} SECRET: ${endpointSecret}` }, { status: 400 });
         }
 
         let event: StripeEvent;
