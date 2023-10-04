@@ -1,0 +1,43 @@
+.container {
+    width: 300px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 5%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container div {
+    border-bottom: 1px solid black;
+}
+
+.order_name {
+    font-weight: 700;
+}
+.date {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+.order_quant {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.adress{
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+
+@media (max-width: 768px) {
+
+}

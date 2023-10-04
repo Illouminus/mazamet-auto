@@ -35,7 +35,7 @@
 @media (max-width: 768px) {
     .cards_container {
         flex-direction: column;
-        margin: 20px;
+
     }
     .filter_component {
         display: none;

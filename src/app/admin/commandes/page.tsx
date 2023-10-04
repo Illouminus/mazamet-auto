@@ -1,15 +1,38 @@
-"use client"
-
-
-
 import {Sidebar} from "@/components/AdminPage/Sidebar/Sidebar";
+import {Metadata} from "next";
+import {CommandesComponent} from "@/components/AdminPage/Commandes/Commandes";
+import cls from './styles.module.css'
 
-export default function commandes () {
+export const metadata: Metadata = {
+    title: 'COMMANDES',
+}
+
+async function getData() {
+    const res = await fetch(`${process.env.BASE_URL}/api/orders/getAllOrders`, {
+        method: 'GET',
+        credentials: 'include',
+        next: { revalidate: 3600}
+    })
+    // The return value is *not* serialized
+    // You can return Date, Map, Set, etc.
+
+    if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json()
+}
+
+
+
+export default async  function Commandes () {
+   const orders = await getData()
 
     return (
-      <div>
+      <div className={cls.container}>
           <Sidebar />
-          product page
+          <CommandesComponent orders={orders}/>
       </div>
     )
 }

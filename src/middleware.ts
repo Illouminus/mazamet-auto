@@ -8,6 +8,7 @@ export function middleware(request: NextRequest) {
 
     const token = request.cookies.get('token')?.value || ''
 
+    request.cookies.set('token', token)
 
     // Если маршрут является общедоступным и у пользователя есть действительный токен, перенаправляем его на профиль
     if (isPublicPath && token) {

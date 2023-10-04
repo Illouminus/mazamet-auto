@@ -17,7 +17,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         if (!sig) {
             console.error("No stripe-signature header found in the request.");
             return NextResponse.json({
-                error: `No stripe-signature header found. Available headers: ${body}. SIG: ${sig} SECRET: ${endpointSecret}`
+                error: `No stripe-signature header found`
             }, { status: 400 });
         }
 
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         try {
             event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
         } catch (err: any) {
-            return NextResponse.json({ error: `Webhook Error: ${err.message} SIG: ${sig} SECRET: ${endpointSecret}` }, { status: 400 });
+            return NextResponse.json({ error: `Webhook Error: ${err.message} ` }, { status: 400 });
         }
 
         switch (event.type) {

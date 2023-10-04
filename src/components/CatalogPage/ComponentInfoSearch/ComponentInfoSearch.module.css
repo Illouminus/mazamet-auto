@@ -30,6 +30,10 @@
     .container {
         width: 100%;
         margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
     }
 
     .number_resultat {
@@ -45,10 +49,15 @@
 
     .info_car{
         padding: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     .description {
+        width: 100%;
         padding: 20px;
-        text-align: center;
+        text-align: justify;
+
     }
 }

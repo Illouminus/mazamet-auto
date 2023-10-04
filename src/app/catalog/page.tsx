@@ -16,7 +16,12 @@ async function getData() {
 
     if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
+        if (!res.ok) {
+            console.log('Status:', res.status);
+            console.log('Status text:', res.statusText);
+            console.log('Error message:', await res.text());
+            throw new Error('Failed to fetch data');
+        }
     }
 
     return res.json()
