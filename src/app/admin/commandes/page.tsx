@@ -9,7 +9,8 @@ export const metadata: Metadata = {
 
 async function getData() {
         const res = await fetch(`${process.env.BASE_URL}api/orders/getAllOrders`, {
-            next: {revalidate: 3600}
+            next: {revalidate: 3600},
+            cache: "no-store"
         })
         console.log('RESPONSE', res)
         if (!res.ok) {
