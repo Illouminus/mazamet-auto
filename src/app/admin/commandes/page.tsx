@@ -32,3 +32,5 @@ export default async  function Commandes () {
       </div>
     )
 }
+
+export const dynamic = 'force-dynamic'
