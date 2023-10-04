@@ -8,9 +8,7 @@ export const metadata: Metadata = {
 }
 
 async function getData() {
-    const res = await fetch(`${process.env.BASE_URL}api/orders/getAllOrders`, {
-        next: { revalidate: 3600}
-    })
+    const res = await fetch(`${process.env.BASE_URL}api/orders/getAllOrders`)
     console.log('RESPONSE', res)
     if (!res.ok) {
         throw new Error('Failed to fetch data')
