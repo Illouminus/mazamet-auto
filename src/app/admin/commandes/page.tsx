@@ -19,6 +19,7 @@ async function getData() {
         return res.json()
     }
     catch (e) {
+        console.log(e)
         return [{}]
     }
 }
