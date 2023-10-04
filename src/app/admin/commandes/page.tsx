@@ -9,8 +9,6 @@ export const metadata: Metadata = {
 
 async function getData() {
     const res = await fetch(`${process.env.BASE_URL}/api/orders/getAllOrders`, {
-        method: 'GET',
-        credentials: 'include',
         next: { revalidate: 3600}
     })
     // The return value is *not* serialized
