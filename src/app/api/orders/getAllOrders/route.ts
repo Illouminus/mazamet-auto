@@ -12,6 +12,8 @@ export async function GET(request: NextRequest) {
         // }
 
         const orders = await Order.find().populate('items.product').exec();
+        if (!orders)
+            return NextResponse.json({ error: "Error to find the orders in BD" }, { status: 501 });
         return NextResponse.json(orders);
 
     } catch (error: any) {
