@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 }
 
 async function getData() {
-    try {
         const res = await fetch(`${process.env.BASE_URL}api/orders/getAllOrders`, {
             next: {revalidate: 3600}
         })
@@ -17,11 +16,8 @@ async function getData() {
             throw new Error('Failed to fetch data')
         }
         return res.json()
-    }
-    catch (e) {
-        console.log(e)
-        return [{}]
-    }
+
+
 }
 
 
