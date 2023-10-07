@@ -77,8 +77,7 @@ export function APropos() {
                     </div>
                     <h2 className="text-3xl font-semibold mb-4">Contactez-nous</h2>
                     <p>
-                        Si vous avez des questions ou souhaitez en savoir
-                        plus sur nos produits, n'hésitez pas à nous contacter via notre forme de contact.
+                        Si vous avez des questions ou souhaitez en savoir plus sur nos produits, n&apos;hésitez pas à nous contacter via notre forme de contact.
                     </p>
                 </motion.section>
             </motion.div>
