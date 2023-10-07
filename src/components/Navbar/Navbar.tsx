@@ -37,19 +37,15 @@ export const Navbar = () => {
         }
     }, []);
 
-
     const signOut = async () => {
-            try {
-                await axios.get('/api/users/logout')
-                setIsAuthenticated(false)
-                await  router.push('/login')
-            } catch (error) {
-                console.log(error)
-            }
+        try {
+            await axios.get('/api/users/logout')
+            setIsAuthenticated(false)
+            await  router.push('/login')
+        } catch (error) {
+            console.log(error)
+        }
     }
-
-
-
     return (
         <nav className={styles.navbar}>
             <div className={styles.container_logo}>
