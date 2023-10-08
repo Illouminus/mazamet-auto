@@ -69,7 +69,7 @@ export function ContactPage() {
                     className="flex flex-col items-center justify-center space-y-4"
                 >
                     <FaExclamationCircle className="text-red-500 text-5xl" />
-                    <p>Une erreur s'est produite lors de l'envoi de votre message.</p>
+                    <p>Une erreur s&apos;est produite lors de l&apos;envoi de votre message.</p>
                 </motion.div>
             )}
 
