@@ -3,6 +3,7 @@
 import { Fragment } from 'react';
 import { motion } from 'framer-motion';
 import { FaCar, FaHistory, FaMedal, FaUsers, FaPhone } from 'react-icons/fa';
+import Link from "next/link";
 
 export function APropos() {
     return (
@@ -77,7 +78,8 @@ export function APropos() {
                     </div>
                     <h2 className="text-3xl font-semibold mb-4">Contactez-nous</h2>
                     <p>
-                        Si vous avez des questions ou souhaitez en savoir plus sur nos produits, n&apos;hésitez pas à nous contacter via notre forme de contact.
+                        Si vous avez des questions ou souhaitez en savoir plus sur nos produits,
+                        n&apos;hésitez pas à nous contacter via notre <Link href={'/about/contact'}>forme de contact</Link>.
                     </p>
                 </motion.section>
             </motion.div>

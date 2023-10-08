@@ -23,7 +23,7 @@ export function ConditionsGeneralesPage() {
                     <h2 className="text-2xl font-semibold mb-4">Produits</h2>
                     <p>Les photographies illustrant les
                         produits n&apos;entrent pas dans le champ contractuel.
-                        Si des erreurs s'y sont introduites, en aucun cas,
+                        Si des erreurs s&apos;y sont introduites, en aucun cas,
                         la responsabilité de MAZAMET PIECES AUTO ne pourra être engagée.</p>
 
                     <h2 className="text-2xl font-semibold mb-4 mt-6">Commande</h2>
@@ -32,7 +32,7 @@ export function ConditionsGeneralesPage() {
 
                     <h2 className="text-2xl font-semibold mb-4 mt-6">Livraison</h2>
                     <p>Les livraisons sont faites à l&apos;adresse indiquée dans le bon de commande.
-                        Les risques sont à la charge de l'acquéreur à compter du moment où les
+                        Les risques sont à la charge de l&apos;acquéreur à compter du moment où les
                         produits ont quitté les locaux de MAZAMET PIECES AUTO.</p>
 
                     <h2 className="text-2xl font-semibold mb-4 mt-6">Rétractation</h2>
