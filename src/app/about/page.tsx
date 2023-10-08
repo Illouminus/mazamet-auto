@@ -5,4 +5,4 @@ export default function About () {
         <APropos />
     )
 }
-export const dynamic = 'force-dynamic'
+

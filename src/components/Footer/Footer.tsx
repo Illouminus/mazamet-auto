@@ -16,7 +16,7 @@ export const Footer = () => {
                 </ul>
 
                 <ul className={cls.section}>
-                    <Link href={'/services'} className={cls.link}>CONDITIONS GENERALE</Link>
+                    <Link href={'/conditions'} className={cls.link}>CONDITIONS GENERALE</Link>
                     <Link href={'/services'} className={cls.link}>NOUS CONTACTER</Link>
                     <Link href={'/services'} className={cls.link}>NOUS TROUVER</Link>
                 </ul>

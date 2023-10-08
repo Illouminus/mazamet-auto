@@ -8,7 +8,7 @@ export function APropos() {
     return (
         <Fragment>
             <motion.div
-                className="container flex flex-col mx-auto px-4 py-8 mt-36"
+                className="container mt-36 flex flex-col mx-auto px-4 py-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}

@@ -1,14 +1,11 @@
 "use client"
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import cls from './CatalogHome.module.css'
-import {useSelector} from "react-redux";
-import {getProductsList} from "@/components/AdminPage/Products/selectors/productSelector";
 import {ListCarComponent} from "@/components/CatalogPage/ListCarComponent/ListCarComponent";
 import axios from "axios";
 import { selectedProduct} from "@/slices/productSlice/types/ProductSchema";
 import {ProductCard} from "@/components/CatalogPage/ProductCard/ProductCard";
 import {FilterComponent} from "@/components/CatalogPage/FilterComponent/FilterComponent";
-import {ProductCardSkeleton} from "@/components/CatalogPage/ProductCard/ProductCardSkeleton/ProductCardSkeleton";
 import {ComponentInfoSearch} from "@/components/CatalogPage/ComponentInfoSearch/ComponentInfoSearch";
 import {Loader} from "@/components/Loader/Loader";
 
@@ -20,7 +17,7 @@ export interface marquesList {
 
 // @ts-ignore
 export const CatalogHome = ({brands}) => {
-    console.log(brands)
+
     const [step, setStep] = useState<string>('step1');
     const [models, setModel] = useState<marquesList[]>();
     const [categories, setCategories] = useState<marquesList[]>();

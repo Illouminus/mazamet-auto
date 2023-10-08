@@ -40,7 +40,7 @@ const services = [
 export function ServicesPage() {
     return (
         <Fragment>
-            <div className="container mx-auto flex flex-col px-4 py-8 mt-36">
+            <div className="container mt-36 mx-auto flex flex-col px-4 py-8 ">
                 <motion.h1
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
