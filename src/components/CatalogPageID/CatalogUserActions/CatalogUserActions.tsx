@@ -10,7 +10,7 @@ interface CatalogUserActionsProps {
 
 export const CatalogUserActions = ({product}: CatalogUserActionsProps) => {
     console.log('HOME CATALOG',product)
-    const [amount, setAmount] = useState<number>(0)
+    const [amount, setAmount] = useState<number>(1)
     const {name, price, model, brand, quantity, description} = product;
 
     const getAmountPlus = () => {
@@ -19,7 +19,7 @@ export const CatalogUserActions = ({product}: CatalogUserActionsProps) => {
     }
 
     const getAmountMinus = () => {
-        if (amount != 0)
+        if (amount != 1)
             setAmount((prev) => prev -= 1)
     }
 

@@ -67,6 +67,11 @@ export const Navbar = () => {
             />
             <div className={isOpen ? styles.menuOpen : styles.menuClose}>
                 <NavItem links={links} onClick={closeMobileMenu}/>
+                {isAuthenticated && (
+                    <button onClick={signOut} className={styles.link}>
+                        Logout
+                    </button>
+                )}
             </div>
         </nav>
     );

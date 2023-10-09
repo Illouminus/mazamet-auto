@@ -80,6 +80,15 @@
     transform: translateX(100%);
 }
 
+.link {
+        color: #2C3033;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 20px;
+    }
+
 
 @media (min-width: 768px) {
 
