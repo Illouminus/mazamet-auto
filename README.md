@@ -1,34 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Mazamet Auto Parts E-commerce Website</h1>
+<h2 align="center">Online Auto Parts Store for a Garage in Southern France</h2>
 
-## Getting Started
+<div align="center" width="80%">
+  <p align="justify">
+    <b>Project Overview:</b> Mazamet Auto is an e-commerce platform specializing in auto parts, catering to the needs of a garage located in Southern France. This website is built using Next.js and MongoDB, offering a seamless online shopping experience, with Stripe integration for secure payments.<br><br>
+    <b>Key Features:</b> The site includes a comprehensive catalog of auto parts, a user-friendly shopping cart, an order management system, and an admin panel for product addition and inventory management. It is designed to provide a convenient and efficient shopping experience for auto enthusiasts.<br><br>
+    <b>Technology Stack:</b> Next.js for the frontend, MongoDB for database management, and Stripe for payment processing.
+  </p>
+</div>
 
-First, run the development server:
+<h3 align="left">Getting Started</h3>
+<p align="left">
+  Instructions to set up the project locally for development and testing purposes.
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+<h3 align="left">Prerequisites:</h3>
+<p align="left">
+  Ensure you have npm, MongoDB, and Stripe API keys set up on your machine.
+</p>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<h3 align="left">Installation:</h3>
+<p align="left">
+  Clone the repository and install dependencies:<br>
+  <code>
+    git clone https://github.com/Illouminus/mazamet-auto.git<br>
+    cd mazamet-auto<br>
+    npm install<br>
+  </code>
+</p>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<h3 align="left">Running the Development Server:</h3>
+<p align="left">
+  Launch the development server with:<br>
+  <code>
+    npm run dev<br>
+  </code><br>
+  Access the application at <a href="http://localhost:3000">http://localhost:3000</a>.
+</p>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<h3 align="left">Admin Panel Usage:</h3>
+<p align="left">
+  Use the admin panel to manage products, orders, and view sales analytics. Ensure secure login credentials for accessing the admin features.
+</p>
 
-## Learn More
+<h3 align="left">Learn More About Next.js:</h3>
+<p align="left">
+  Explore <a href="https://nextjs.org/docs">Next.js documentation</a> for further details on its features.
+</p>
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<h3 align="left">Deploying the Application:</h3>
+<p align="left">
+  Consult the <a href="https://nextjs.org/docs/deployment">Next.js deployment documentation</a> for guidance on deploying the application.
+</p>
